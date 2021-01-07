@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7]
+        python-version: [3.8.6]
     steps: 
       - uses: actions/checkout@v2
       - name: Set up Python $
@@ -20,4 +20,4 @@ jobs:
         run: | 
           pip install checkov
           checkov -d . --external-checks-git https://github.com/nmr-sso-org-2/nmr-checkov-v1.git//my_extra_checks
-          
+
