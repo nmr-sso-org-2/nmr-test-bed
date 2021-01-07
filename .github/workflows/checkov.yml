@@ -20,5 +20,5 @@ jobs:
       - name: Test with Checkov
         run: | 
           pip install checkov
-          checkov -d . --external-checks-git https://${{ secrets.USER }}:${{ secrets.TOKEN}}@github.com/nmr-sso-org-2/nmr-checkov-v1.git//my_extra_checks
+          checkov -d . --external-checks-git https://${{secrets.USER}}:${{secrets.TOKEN}}@github.com/nmr-sso-org-2/nmr-checkov-v1.git//my_extra_checks
 
