@@ -1,4 +1,4 @@
-name: checkov
+name: checkov_test
 
 
 on:
