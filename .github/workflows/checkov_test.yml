@@ -1,0 +1,40 @@
+name: checkov
+
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master #dev, release, etc.
+  release:
+    types:
+      - created
+
+jobs:
+  checkov-job:
+    runs-on: ubuntu-latest
+    name: checkov-action
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v2
+        with:
+          path: target_repo
+
+      - name: Checkout Numerator Checkov Rules repo
+        uses: actions/checkout@v2
+        with:
+          repository: MarketTrack/nmr-cybersec-checkov-rules
+          path: custom_checks
+          ref: master
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN  }}
+
+
+
+      - name: Run Checkov action
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          external_checks_dirs: ${{github.workspace}}/custom_checks/terraform/checks/resource/aws
+          directory: target_repo
+          quiet: true 
+          skip_check: CKV_AWS_5,CKV_AWS_16,CKV_AWS_17,CKV_AWS_18,CKV_AWS_19,CKV_AWS_20,CKV_AWS_21,CKV_AWS_29,CKV_AWS_38,CKV_AWS_39,CKV_AWS_42,CKV_AWS_47,CKV_AWS_49,CKV_AWS_50,CKV_AWS_51,CKV_AWS_52,CKV_AWS_54,CKV_AWS_65,CKV_AWS_66,CKV_AWS_136,CKV_AWS_158,CKV_AWS_109,CKV_AWS_111,CKV_AWS_115,CKV_AWS_116,CKV_AWS_117,CKV_AWS_126,CKV_AWS_130,CKV_AWS_135,CKV_AWS_144,CKV_AWS_145,CKV2_AWS*
