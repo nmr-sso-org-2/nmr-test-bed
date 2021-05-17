@@ -26,7 +26,7 @@ jobs:
           repository: MarketTrack/nmr-cybersec-checkov-rules
           path: custom_checks
           ref: master
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN  }}
+          token: ${{ secrets.TOKEN_TEST  }}
 
 
 
